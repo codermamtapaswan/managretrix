@@ -68,7 +68,7 @@ h1,
 .h1 {
   color: var(--black);
   font-family: var(--heading-font);
-  font-weight: var(--fw-1);
+  /* font-weight: var(--fw-1); */
   line-height: 1.5;
   text-transform: capitalize;
 }
@@ -258,16 +258,14 @@ header nav ul {
 /* # Footer
   =================================================*/
 footer {
-  color: var(--white);
-  background: var(--bg-2);
+  background: var(--bg-1);
 }
 
 footer .title {
-  font-weight: var(--fw-2);
+  font-weight: var(--fw-1);
 }
 
 footer ul li a {
-  color: var(--white);
   font-size: var(--fs-3);
 }
 

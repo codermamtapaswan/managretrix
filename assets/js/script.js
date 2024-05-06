@@ -99,69 +99,165 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    var tabContainer = document.getElementById("tabContainer");
-    var tabs = tabContainer.getElementsByClassName("tablinks");
+   const tabButtons = document.querySelectorAll(".tablinks");
 
-    function openService(serviceName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        for (i = 0; i < tabs.length; i++) {
-            tabs[i].classList.remove("active");
-        }
-        document.getElementById(serviceName).style.display = "block";
-        tabs[event.target.dataset.index].classList.add("active");
-    }
+   for(let i=0; i < tabButtons.length; i++){
+    tabButtons[i].addEventListener('click', function(){
+        const tabName = this.dataset.process;
+        const tabContent = document.getElementById(tabName);
 
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].dataset.index = i; // Store the index as a data attribute
-        tabs[i].addEventListener("click", function (event) {
-            openService(event.target.dataset.service);
+        const allTabContent = document.querySelectorAll(".tabcontent");
+        const allTabButtons = document.querySelectorAll(".tablinks");
+
+        for(var j= 0;  j < allTabContent.length; j++ ){
+          allTabContent[j].style.display = "none";
+          allTabButtons[j].classList.remove("active");
+        }
+
+        tabContent.style.display="block";
+        this.classList.add("active");
+    });
+   }
+   document.querySelector(".tablinks").click();
+
+
+
+
+
+    function mgSlider(sliders) {
+        sliders.forEach(config => {
+            const { className, slidesPerView, spaceBetween } = config;
+            const defaultSlidesPerView = slidesPerView || 2; // Default slidesPerView if not provided
+            const defaultSpaceBetween = spaceBetween || 20; // Default spaceBetween if not provided
+
+            const sliderParent = document.querySelector('.' + className);
+            const sliderWrap = sliderParent.querySelector('.slider-wrap');
+            const slideCount = sliderWrap.querySelectorAll('.slide-card').length;
+            let currentIndex = 0;
+
+            // Update slidesPerView based on window width
+            if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+                slidesPerView = defaultSlidesPerView; // Display two slides on tablets
+            } else if (window.innerWidth <= 600) {
+                slidesPerView = 1; // Display one slide on mobile
+            }
+
+            // Calculate the width of the container
+            const containerWidth = sliderWrap.offsetWidth;
+
+            // Calculate the width of each slide based on the formula
+            let slideWidth = (containerWidth / defaultSlidesPerView) - ((defaultSlidesPerView - 1) * defaultSpaceBetween / defaultSlidesPerView);
+
+            // Function to go to the next slide
+            function goToNextSlide() {
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateSliderPosition();
+                updateButtonState();
+            }
+
+            // Function to go to the previous slide
+            function goToPrevSlide() {
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                updateSliderPosition();
+                updateButtonState();
+            }
+
+            // Function to update the slider position with slide effect
+            function updateSliderPosition() {
+                // Calculate the translate value for the current index
+                const translateValue = -currentIndex * (slideWidth + defaultSpaceBetween);
+                sliderWrap.style.transform = `translateX(${translateValue}px)`;
+            }
+
+            // Function to update the button states
+            function updateButtonState() {
+                // Enable or disable the "Previous" button based on the currentIndex
+                if (currentIndex > 0) {
+                    sliderParent.querySelector('#previous-arrow').disabled = false;
+                } else {
+                    sliderParent.querySelector('#previous-arrow').disabled = true;
+                }
+
+                // Enable or disable the "Next" button based on the currentIndex and slideCount
+                if (window.innerWidth <= 600) {
+                    if (currentIndex < slideCount - 1) {
+                        sliderParent.querySelector('#next-arrow').disabled = false;
+                    } else {
+                        sliderParent.querySelector('#next-arrow').disabled = true;
+                    }
+                } else {
+                    if ((slideCount - currentIndex - 1) < defaultSlidesPerView) {
+                        sliderParent.querySelector('#next-arrow').disabled = true;
+                    } else {
+                        sliderParent.querySelector('#next-arrow').disabled = false;
+                    }
+                }
+
+                // Disable the "Next" button if there are fewer slides than slides per view
+                if (slideCount <= defaultSlidesPerView) {
+                    sliderParent.querySelector('#next-arrow').disabled = true;
+                }
+            }
+
+            // Function to calculate slideWidth and spaceBetween
+            function calculateSlideSize() {
+                // Set the width and marginRight for each slide
+                const slideCards = sliderWrap.querySelectorAll('.slide-card');
+                for (let i = 0; i < slideCards.length; i++) {
+                    slideCards[i].style.width = slideWidth + 'px';
+                    slideCards[i].style.marginRight = defaultSpaceBetween + 'px';
+                }
+
+                // Update button states after calculating slide size
+                updateButtonState();
+            }
+
+            // Initial calculation of slide size
+            calculateSlideSize();
+
+            // Recalculate slide size when the window is resized
+            window.addEventListener('resize', calculateSlideSize);
+
+            // Attach click events to navigation buttons
+            sliderParent.querySelector('#next-arrow').addEventListener('click', function () {
+                if (currentIndex < slideCount - 1) {
+                    goToNextSlide();
+                }
+            });
+
+            sliderParent.querySelector('#previous-arrow').addEventListener('click', function () {
+                if (currentIndex > 0) {
+                    goToPrevSlide();
+                }
+            });
         });
     }
 
-    // Get the element with id="defaultOpen" and click on it
-    tabs[0].click();
-
-
-
-    // accordion code  ============ start =====>
-    // const detailsElements = document.querySelectorAll("details");
-    // const summaryElements = document.querySelectorAll("summary");
-    // summaryElements.forEach((summary, index) => {
-    //     summary.addEventListener("click", () => {
-    //         // Close other open details elements and remove 'active' class
-    //         detailsElements.forEach((details, i) => {
-    //             if (i !== index) {
-    //                 details.open = false;
-    //             }
-    //         });
-    //     });
-    // });
+    mgSlider([
+        { className: 'testimonials', slidesPerView: 3, spaceBetween: 20 }
+    ]);
 
 
 
     // Scroll to top   ============ start =====>
 
-    // let mybutton = document.getElementById("myBtn");
-    // window.onscroll = function () {
-    //     scrollFunction();
-    // };
+    let mybutton = document.getElementById("scroll_to_top");
+    window.onscroll = function () {
+        scrollFunction();
+    };
 
-    // function scrollFunction() {
-    //     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    //         mybutton.style.display = "block";
-    //     } else {
-    //         mybutton.style.display = "none";
-    //     }
-    // }
-    // function topFunction() {
-    //     document.body.scrollTop = 0;
-    //     document.documentElement.scrollTop = 0;
-    // }
-    // mybutton.addEventListener("click", topFunction);
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    mybutton.addEventListener("click", topFunction);
 
 
 
