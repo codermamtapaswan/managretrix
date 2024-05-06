@@ -212,6 +212,107 @@ header nav ul {
   =================================================*/
 
 
+/* hr-Process Section________________Start */
+.tablinks{
+  box-shadow: var(--shadow);
+}
+
+.tab .tablinks.active {
+  background: var(--white);
+}
+
+.tab .tablinks.active::before {
+  transform: translateX(-50%);
+  background: var(--white);
+}
+
+/* hr-tasks Section________________Start */
+.tablinks,.work-box,
+.hr-tasks .task-box {
+  border: 1px solid var(--bd-color);
+  border-radius: var(--rad-2);
+}
+
+
+.tablinks span,
+.hr-tasks .task-box span {
+  font-size: var(--fs-2);
+  font-weight: var(--fw-2);
+  color: var(--black);
+}
+
+
+/* awards Section________________Start */
+.awards .sec-title{
+  background: var(--white);
+  border: 1px solid var(--bd-color);
+  border-radius: var(--rad-2);
+}
+
+.why-choose{
+  background: var(--bg-3);
+  color: var(--white);
+}
+
+.why-choose-l .h4{
+  color: var(--white);
+}
+
+.why-choose-l .box:not(:first-child){
+  border-left:1px solid var(--bd-color);
+  
+}
+
+
+.why-choose-l .box span:first-child{
+  font-size:25px;
+  font-weight: var(--fw-2);
+}
+
+
+
+.box.flex .h5{
+  color: var(--white);
+  
+}
+/* how-we-work Section________________Start */
+.work-box .icon{
+  background: var(--pc);
+  border-radius: var(--rad-0);
+}
+.work-box .icon div{
+  border-radius: var(--rad-0);
+  background: var(--white);
+  font-size:var(--fs-3) ;
+  box-shadow: var(--shadow);
+}
+
+[class*="col"]:has(.work-box) .icon::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='176' height='12' viewBox='0 0 176 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M175.53 6.53a.75.75 0 0 0 0-1.06L170.757.697a.75.75 0 1 0-1.06 1.06L173.939 6l-4.242 4.243a.75.75 0 0 0 1.06 1.06zM0 6.75h1.989v-1.5H0zm5.966 0h3.977v-1.5H5.966zm7.955 0h3.977v-1.5H13.92zm7.954 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5h-3.978zm7.955 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5H85.51zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5h-3.978zm7.955 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5h-3.978zm7.955 0h3.977v-1.5h-3.977zm7.954 0H175v-1.5h-1.989zm2.519-.22a.75.75 0 0 0 0-1.06L170.757.697a.75.75 0 1 0-1.06 1.06L173.939 6l-4.242 4.243a.75.75 0 0 0 1.06 1.06zM0 6.75h1.989v-1.5H0zm5.966 0h3.977v-1.5H5.966zm7.955 0h3.977v-1.5H13.92zm7.954 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5h-3.978zm7.955 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5H85.51zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5h-3.978zm7.955 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.977v-1.5h-3.977zm7.955 0h3.977v-1.5h-3.977zm7.954 0h3.978v-1.5h-3.978zm7.955 0h3.977v-1.5h-3.977zm7.954 0H175v-1.5h-1.989z' fill='%23E2E2E2'/%3E%3C/svg%3E");
+}
+
+/* testimonial-wrap___________________ */
+.testimonials  .slider .indicator {
+  background: var(--sc);
+}
+
+.testimonials  .slider .indicator.active{
+  background: var(--pc);
+}
+.testimonial-wrap{
+  background: var(--bg-1);
+  box-shadow: var(--shadow);
+}
+
+
+.testimonial-wrap img{
+  border: 1px solid var(--pc);
+  border-radius: var(--rad-0);
+}
+
+/* blog_______________________ */
+
+
 /* # Single Page
   =================================================*/
 
