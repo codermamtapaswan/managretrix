@@ -225,7 +225,7 @@ hr{
   content: counter(term) ". ";
 }
 
-/* all animations */
+/* all ns */
 @keyframes scaleUp {
 
   0%,
@@ -802,6 +802,8 @@ background:  var(--bd-color);
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: moveUp 2s 3s ease-in-out infinite;
+
 }
 
 [class*="col"]:has(.work-box) .icon::after {
@@ -1079,7 +1081,6 @@ footer .container .row-gap {
     max-width: 1140px;
   }
 }
-
 
 @media(max-width:768px) {
   [alt="hero-img"] {

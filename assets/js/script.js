@@ -123,170 +123,148 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    function mgSlider(sliders) {
-        sliders.forEach(config => {
-            const { className, slidesPerView, spaceBetween, autoSlideInterval } = config;
-            const defaultSlidesPerView = slidesPerView || 2;
-            const defaultSpaceBetween = spaceBetween || 20;
 
-            const sliderParent = document.querySelector('.' + className);
-            const sliderWrap = sliderParent.querySelector('.slider-wrap');
-            const slideCount = sliderWrap.querySelectorAll('.slide-card').length;
-            let currentIndex = 0;
-            let intervalId;
-            let indicatorsContainer; // Indicator container element
-            let indicators = []; // Array to store indicator elements
-
-            // Update slidesPerView based on window width
-            if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-                slidesPerView = defaultSlidesPerView; // Display two slides on tablets
-            } else if (window.innerWidth <= 600) {
-                slidesPerView = 1; // Display one slide on mobile
-            }
-
-            // Calculate the width of the container
-            const containerWidth = sliderWrap.offsetWidth;
-
-            // Calculate the width of each slide based on the formula
-            let slideWidth = (containerWidth / defaultSlidesPerView) - ((defaultSlidesPerView - 1) * defaultSpaceBetween / defaultSlidesPerView);
-
-            function goToSlide(index) {
-                currentIndex = index;
-                updateSliderPosition();
-                updateIndicatorState();
-            }
-
-            function goToNextSlide() {
-                currentIndex = (currentIndex + 1) % slideCount;
-                updateSliderPosition();
-                updateButtonState();
-            }
-
-            function goToPrevSlide() {
-                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-                updateSliderPosition();
-                updateButtonState();
-            }
-
-            function updateSliderPosition() {
-                const translateValue = -currentIndex * (slideWidth + defaultSpaceBetween);
-                sliderWrap.style.transform = `translateX(${translateValue}px)`;
-            }
-
-            function createIndicators() {
-                indicatorsContainer = document.createElement('div');
-                indicatorsContainer.classList.add('indicators');
-
-                for (let i = 0; i < slideCount; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.classList.add('indicator');
-                    indicator.setAttribute('data-index', i);
-                    indicator.addEventListener('click', () => goToSlide(i)); // Click event to navigate to slide
-                    indicators.push(indicator);
-                    indicatorsContainer.appendChild(indicator);
-                }
-
-                sliderParent.appendChild(indicatorsContainer);
-            }
-
-            function updateIndicatorState() {
-                indicators.forEach((indicator, index) => {
-                    if (index === currentIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            }
-
-            function startAutoSlide() {
-                intervalId = setInterval(goToNextSlide, autoSlideInterval || 2000);
-            }
-
-            function updateButtonState() {
-                const prevButton = sliderParent.querySelector('#previous-arrow');
-                const nextButton = sliderParent.querySelector('#next-arrow');
-
-                if (indicatorsContainer) {
-                    prevButton.disabled = true;
-                    nextButton.disabled = true;
-                    prevButton.style.visibility = 'hidden';
-                    nextButton.style.visibility = 'hidden';
-                } else {
-                    if (currentIndex > 0) {
-                        prevButton.disabled = false;
-                        prevButton.style.visibility = 'visible';
-                    } else {
-                        prevButton.disabled = true;
-                        prevButton.style.visibility = 'hidden';
-                    }
-
-                    if (window.innerWidth <= 600) {
-                        if (currentIndex < slideCount - 1) {
-                            nextButton.disabled = false;
-                            nextButton.style.visibility = 'visible';
-                        } else {
-                            nextButton.disabled = true;
-                            nextButton.style.visibility = 'hidden';
-                        }
-                    } else {
-                        if ((slideCount - currentIndex - 1) < defaultSlidesPerView) {
-                            nextButton.disabled = true;
-                            nextButton.style.visibility = 'hidden';
-                        } else {
-                            nextButton.disabled = false;
-                            nextButton.style.visibility = 'visible';
-                        }
-                    }
-
-                    if (slideCount <= defaultSlidesPerView) {
-                        nextButton.disabled = true;
-                        nextButton.style.visibility = 'hidden';
-                    }
-                }
-            }
-
-            function calculateSlideSize() {
-                const slideCards = sliderWrap.querySelectorAll('.slide-card');
-                for (let i = 0; i < slideCards.length; i++) {
-                    slideCards[i].style.width = slideWidth + 'px';
-                    slideCards[i].style.marginRight = defaultSpaceBetween + 'px';
-                }
-
-                updateButtonState();
-            }
-
-            calculateSlideSize();
-            createIndicators();
-            startAutoSlide();
-
-            window.addEventListener('resize', calculateSlideSize);
-
-            sliderParent.querySelector('#next-arrow').addEventListener('click', function () {
-                if (currentIndex < slideCount - 1) {
-                    goToNextSlide();
-                }
-            });
-
-            sliderParent.querySelector('#previous-arrow').addEventListener('click', function () {
-                if (currentIndex > 0) {
-                    goToPrevSlide();
-                }
-            });
-
-            sliderParent.addEventListener('mouseover', () => clearInterval(intervalId));
-            sliderParent.addEventListener('mouseleave', startAutoSlide);
-        });
-    }
-
-    mgSlider([
-        {
-            className: 'testimonials',
-            slidesPerView: 3,
-            spaceBetween: 20,
-            autoSlideInterval: 1000
+    
+    function mgAutoSlider(sliderWrapName, autoSlideInterval = 3000) 
+    {
+        const sliderParent = document.querySelector('.' + sliderWrapName);
+        const sliderWrap = sliderParent.querySelector('.slider-wrap');
+        const slideCount = sliderWrap.querySelectorAll(".slide-card").length;
+        let currentIndex = 0;
+        let autoSlideTimer;
+      
+        // Create indicators for each slide
+        const sliderIndicators = document.createElement("div");
+        sliderIndicators.classList.add("indicators");
+        for (let i = 0; i < slideCount; i++) {
+          const indicator = document.createElement("div");
+          indicator.classList.add("indicator");
+          sliderIndicators.appendChild(indicator);
         }
-    ]);
+        sliderWrap.parentNode.insertBefore(sliderIndicators, sliderWrap.nextSibling);
+      
+        // Function to update the indicators
+        function updateIndicators() {
+          const indicators = sliderIndicators.querySelectorAll(".indicator");
+          indicators.forEach((indicator, index) => {
+            indicator.classList.toggle("active", index === currentIndex);
+          });
+        }
+
+
+      
+        // Function to go to the next slide
+        function goToNextSlide() {
+          currentIndex = (currentIndex + 1) % slideCount;
+          updateSliderPosition();
+          updateIndicators();
+        }
+      
+        // Function to update the slider position with slide effect
+        function updateSliderPosition() {
+          const translateValue = -currentIndex * sliderWrap.offsetWidth;
+          sliderWrap.style.transform = `translateX(${translateValue}px)`;
+        }
+      
+        // Start the auto slider
+        function startAutoSlider() {
+          autoSlideTimer = setInterval(goToNextSlide, autoSlideInterval);
+        }
+      
+        // Stop the auto slider
+        function stopAutoSlider() {
+          clearInterval(autoSlideTimer);
+        }
+      
+        // Initial setup
+        updateIndicators();
+        startAutoSlider();
+      
+        // Add a click event to indicators
+        sliderIndicators.addEventListener("click", (event) => {
+          if (event.target.classList.contains("indicator")) {
+            currentIndex = Array.from(sliderIndicators.children).indexOf(event.target);
+            updateSliderPosition();
+            updateIndicators();
+          }
+        });
+      
+        // Add mouseover and mouseout events to pause and resume the auto slider
+        sliderWrap.parentNode.addEventListener("mouseover", stopAutoSlider);
+        sliderWrap.parentNode.addEventListener("mouseout", startAutoSlider);
+    }
+      
+      mgAutoSlider("testimonials", autoSlideInterval = 3000);
+
+    // function mgAutoSlider(sliderWrapName, autoSlideInterval = 3000) {
+    //     const sliderParent = document.querySelector('.' + sliderWrapName);
+    //     const sliderWrap = sliderParent.querySelector('.slider-wrap');
+    //     const slideCount = sliderWrap.querySelectorAll(".slide-card").length;
+    //     let currentIndex = 0;
+    //     let autoSlideTimer;
+      
+    //     // Create indicators for each slide
+    //     const sliderIndicators = document.createElement("div");
+    //     sliderIndicators.classList.add("indicators");
+    //     for (let i = 0; i < slideCount; i++) {
+    //       const indicator = document.createElement("div");
+    //       indicator.classList.add("indicator");
+    //       sliderIndicators.appendChild(indicator);
+    //     }
+    //     sliderWrap.parentNode.insertBefore(sliderIndicators, sliderWrap.nextSibling);
+      
+    //     // Function to update the indicators
+    //     function updateIndicators() {
+    //       const indicators = sliderIndicators.querySelectorAll(".indicator");
+    //       indicators.forEach((indicator, index) => {
+    //         indicator.classList.toggle("active", index === currentIndex);
+    //       });
+    //     }
+
+
+      
+    //     // Function to go to the next slide
+    //     function goToNextSlide() {
+    //       currentIndex = (currentIndex + 1) % slideCount;
+    //       updateSliderPosition();
+    //       updateIndicators();
+    //     }
+      
+    //     // Function to update the slider position with slide effect
+    //     function updateSliderPosition() {
+    //       const translateValue = -currentIndex * sliderWrap.offsetWidth;
+    //       sliderWrap.style.transform = `translateX(${translateValue}px)`;
+    //     }
+      
+    //     // Start the auto slider
+    //     function startAutoSlider() {
+    //       autoSlideTimer = setInterval(goToNextSlide, autoSlideInterval);
+    //     }
+      
+    //     // Stop the auto slider
+    //     function stopAutoSlider() {
+    //       clearInterval(autoSlideTimer);
+    //     }
+      
+    //     // Initial setup
+    //     updateIndicators();
+    //     startAutoSlider();
+      
+    //     // Add a click event to indicators
+    //     sliderIndicators.addEventListener("click", (event) => {
+    //       if (event.target.classList.contains("indicator")) {
+    //         currentIndex = Array.from(sliderIndicators.children).indexOf(event.target);
+    //         updateSliderPosition();
+    //         updateIndicators();
+    //       }
+    //     });
+      
+    //     // Add mouseover and mouseout events to pause and resume the auto slider
+    //     sliderWrap.parentNode.addEventListener("mouseover", stopAutoSlider);
+    //     sliderWrap.parentNode.addEventListener("mouseout", startAutoSlider);
+    //   }
+      
+    //   mgAutoSlider("testimonials", autoSlideInterval = 1000);
 
 
 
@@ -318,3 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 });
+
+
+
+      
+     
