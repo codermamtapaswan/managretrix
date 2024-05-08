@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
     // Header Sticky  ============ start =====>
     const header = document.querySelector("header");
     const handleScroll = () => {
@@ -99,41 +100,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-   const tabButtons = document.querySelectorAll(".tablinks");
+    const tabButtons = document.querySelectorAll(".tablinks");
 
-   for(let i=0; i < tabButtons.length; i++){
-    tabButtons[i].addEventListener('click', function(){
-        const tabName = this.dataset.process;
-        const tabContent = document.getElementById(tabName);
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].addEventListener('click', function () {
+            const tabName = this.dataset.process;
+            const tabContent = document.getElementById(tabName);
 
-        const allTabContent = document.querySelectorAll(".tabcontent");
-        const allTabButtons = document.querySelectorAll(".tablinks");
+            const allTabContent = document.querySelectorAll(".tabcontent");
+            const allTabButtons = document.querySelectorAll(".tablinks");
 
-        for(var j= 0;  j < allTabContent.length; j++ ){
-          allTabContent[j].style.display = "none";
-          allTabButtons[j].classList.remove("active");
-        }
+            for (var j = 0; j < allTabContent.length; j++) {
+                allTabContent[j].style.display = "none";
+                allTabButtons[j].classList.remove("active");
+            }
 
-        tabContent.style.display="block";
-        this.classList.add("active");
-    });
-   }
-   document.querySelector(".tablinks").click();
-
-
+            tabContent.style.display = "block";
+            this.classList.add("active");
+        });
+    }
+    document.querySelector(".tablinks").click();
 
 
 
     function mgSlider(sliders) {
         sliders.forEach(config => {
-            const { className, slidesPerView, spaceBetween } = config;
-            const defaultSlidesPerView = slidesPerView || 2; // Default slidesPerView if not provided
-            const defaultSpaceBetween = spaceBetween || 20; // Default spaceBetween if not provided
+            const { className, slidesPerView, spaceBetween, autoSlideInterval } = config;
+            const defaultSlidesPerView = slidesPerView || 2;
+            const defaultSpaceBetween = spaceBetween || 20;
 
             const sliderParent = document.querySelector('.' + className);
             const sliderWrap = sliderParent.querySelector('.slider-wrap');
             const slideCount = sliderWrap.querySelectorAll('.slide-card').length;
             let currentIndex = 0;
+            let intervalId;
+            let indicatorsContainer; // Indicator container element
+            let indicators = []; // Array to store indicator elements
 
             // Update slidesPerView based on window width
             if (window.innerWidth >= 768 && window.innerWidth < 1024) {
@@ -148,77 +150,118 @@ document.addEventListener("DOMContentLoaded", function () {
             // Calculate the width of each slide based on the formula
             let slideWidth = (containerWidth / defaultSlidesPerView) - ((defaultSlidesPerView - 1) * defaultSpaceBetween / defaultSlidesPerView);
 
-            // Function to go to the next slide
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSliderPosition();
+                updateIndicatorState();
+            }
+
             function goToNextSlide() {
                 currentIndex = (currentIndex + 1) % slideCount;
                 updateSliderPosition();
                 updateButtonState();
             }
 
-            // Function to go to the previous slide
             function goToPrevSlide() {
                 currentIndex = (currentIndex - 1 + slideCount) % slideCount;
                 updateSliderPosition();
                 updateButtonState();
             }
 
-            // Function to update the slider position with slide effect
             function updateSliderPosition() {
-                // Calculate the translate value for the current index
                 const translateValue = -currentIndex * (slideWidth + defaultSpaceBetween);
                 sliderWrap.style.transform = `translateX(${translateValue}px)`;
             }
 
-            // Function to update the button states
+            function createIndicators() {
+                indicatorsContainer = document.createElement('div');
+                indicatorsContainer.classList.add('indicators');
+
+                for (let i = 0; i < slideCount; i++) {
+                    const indicator = document.createElement('div');
+                    indicator.classList.add('indicator');
+                    indicator.setAttribute('data-index', i);
+                    indicator.addEventListener('click', () => goToSlide(i)); // Click event to navigate to slide
+                    indicators.push(indicator);
+                    indicatorsContainer.appendChild(indicator);
+                }
+
+                sliderParent.appendChild(indicatorsContainer);
+            }
+
+            function updateIndicatorState() {
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            function startAutoSlide() {
+                intervalId = setInterval(goToNextSlide, autoSlideInterval || 2000);
+            }
+
             function updateButtonState() {
-                // Enable or disable the "Previous" button based on the currentIndex
-                if (currentIndex > 0) {
-                    sliderParent.querySelector('#previous-arrow').disabled = false;
-                } else {
-                    sliderParent.querySelector('#previous-arrow').disabled = true;
-                }
+                const prevButton = sliderParent.querySelector('#previous-arrow');
+                const nextButton = sliderParent.querySelector('#next-arrow');
 
-                // Enable or disable the "Next" button based on the currentIndex and slideCount
-                if (window.innerWidth <= 600) {
-                    if (currentIndex < slideCount - 1) {
-                        sliderParent.querySelector('#next-arrow').disabled = false;
-                    } else {
-                        sliderParent.querySelector('#next-arrow').disabled = true;
-                    }
+                if (indicatorsContainer) {
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                    prevButton.style.visibility = 'hidden';
+                    nextButton.style.visibility = 'hidden';
                 } else {
-                    if ((slideCount - currentIndex - 1) < defaultSlidesPerView) {
-                        sliderParent.querySelector('#next-arrow').disabled = true;
+                    if (currentIndex > 0) {
+                        prevButton.disabled = false;
+                        prevButton.style.visibility = 'visible';
                     } else {
-                        sliderParent.querySelector('#next-arrow').disabled = false;
+                        prevButton.disabled = true;
+                        prevButton.style.visibility = 'hidden';
                     }
-                }
 
-                // Disable the "Next" button if there are fewer slides than slides per view
-                if (slideCount <= defaultSlidesPerView) {
-                    sliderParent.querySelector('#next-arrow').disabled = true;
+                    if (window.innerWidth <= 600) {
+                        if (currentIndex < slideCount - 1) {
+                            nextButton.disabled = false;
+                            nextButton.style.visibility = 'visible';
+                        } else {
+                            nextButton.disabled = true;
+                            nextButton.style.visibility = 'hidden';
+                        }
+                    } else {
+                        if ((slideCount - currentIndex - 1) < defaultSlidesPerView) {
+                            nextButton.disabled = true;
+                            nextButton.style.visibility = 'hidden';
+                        } else {
+                            nextButton.disabled = false;
+                            nextButton.style.visibility = 'visible';
+                        }
+                    }
+
+                    if (slideCount <= defaultSlidesPerView) {
+                        nextButton.disabled = true;
+                        nextButton.style.visibility = 'hidden';
+                    }
                 }
             }
 
-            // Function to calculate slideWidth and spaceBetween
             function calculateSlideSize() {
-                // Set the width and marginRight for each slide
                 const slideCards = sliderWrap.querySelectorAll('.slide-card');
                 for (let i = 0; i < slideCards.length; i++) {
                     slideCards[i].style.width = slideWidth + 'px';
                     slideCards[i].style.marginRight = defaultSpaceBetween + 'px';
                 }
 
-                // Update button states after calculating slide size
                 updateButtonState();
             }
 
-            // Initial calculation of slide size
             calculateSlideSize();
+            createIndicators();
+            startAutoSlide();
 
-            // Recalculate slide size when the window is resized
             window.addEventListener('resize', calculateSlideSize);
 
-            // Attach click events to navigation buttons
             sliderParent.querySelector('#next-arrow').addEventListener('click', function () {
                 if (currentIndex < slideCount - 1) {
                     goToNextSlide();
@@ -230,12 +273,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     goToPrevSlide();
                 }
             });
+
+            sliderParent.addEventListener('mouseover', () => clearInterval(intervalId));
+            sliderParent.addEventListener('mouseleave', startAutoSlide);
         });
     }
 
     mgSlider([
-        { className: 'testimonials', slidesPerView: 3, spaceBetween: 20 }
+        {
+            className: 'testimonials',
+            slidesPerView: 3,
+            spaceBetween: 20,
+            autoSlideInterval: 1000
+        }
     ]);
+
+
+
+
+
 
 
 
