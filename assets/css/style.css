@@ -33,6 +33,9 @@
   --heading-font: "BB Torsos Pro";
   --text: rgba(0, 0, 0, 0.7);
   --shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+ --shadow-lg: -2px 8px 30px -6px rgba(0, 0, 0, 0.1);
+
+
   --bd-color: rgba(223, 223, 223, 1);
   --transition: all 0.3s ease-in-out;
 
@@ -419,7 +422,29 @@ header nav ul {
 
 /* # Contact Page Templates
   =================================================*/
+  .contact-form{
+   box-shadow: var(--shadow-lg);
+   border: 1px solid var(--bd-color);
+   border-radius: var(--rad-2);
+  }
+  .float-box{
+    background:#F2F4F4;
+    border-radius: var(--rad-1);
+  }
 
+  .contact-form form{
+    background: var(--bg-1);
+    border-radius: var(--rad-1);
+  }
+  .contact-form .input-group :is(input, textarea) {
+    border-radius: var(--rad-2);
+}
+
+.contact-form .input-group label {
+  font-size: var(--fs-2);
+  font-weight: var(--fw-1);
+  color: var(--black);
+}
 
 /* # Thank You || Search Not Found  || 404 Page
   =================================================*/

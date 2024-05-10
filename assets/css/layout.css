@@ -46,6 +46,8 @@ input {
 }
 
 input,
+textarea,
+textarea:focus,
 input:focus,
 button {
   border: none;
@@ -994,7 +996,39 @@ background:  var(--bd-color);
 
 /* # Contact Page 
   =================================================*/
+  .contact-form{
+    padding: 20px;
+  }
+  .contact-details{
+      position: relative;
+  }
+  .float-box{
+    --w : 60px;
+    padding: 20px;
+    position: absolute;
+    left: calc(-1 * var(--w));
+    width: calc(100% + (var(--w)));
+  }
 
+  .mail span{
+    display: block
+  }
+  
+  .contact-form form{
+    padding: 20px;
+    row-gap: 20px;
+  }
+
+  .contact-form .input-group :is(input, textarea) {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+}
+.contact-form .input-group{
+display: flex;
+flex-direction: column;  
+  gap: 10px;
+}
 
 /* # Thank You || Search Not Found  || 404 Page
   =================================================*/
@@ -1264,6 +1298,11 @@ footer .container .row-gap {
   justify-content: center;
   text-align: center;
   width: 100%;
+}
+
+.float-box{
+  position:unset;
+  --w:0;
 }
    
 
