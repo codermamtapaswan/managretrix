@@ -100,101 +100,103 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    const tabButtons = document.querySelectorAll(".tablinks");
+    // const tabButtons = document.querySelectorAll(".tablinks");
 
-    for (let i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].addEventListener('click', function () {
-            const tabName = this.dataset.process;
-            const tabContent = document.getElementById(tabName);
+    // for (let i = 0; i < tabButtons.length; i++) {
+    //     tabButtons[i].addEventListener('click', function () {
+    //         const tabName = this.dataset.process;
+    //         const tabContent = document.getElementById(tabName);
 
-            const allTabContent = document.querySelectorAll(".tabcontent");
-            const allTabButtons = document.querySelectorAll(".tablinks");
+    //         const allTabContent = document.querySelectorAll(".tabcontent");
+    //         const allTabButtons = document.querySelectorAll(".tablinks");
 
-            for (var j = 0; j < allTabContent.length; j++) {
-                allTabContent[j].style.display = "none";
-                allTabButtons[j].classList.remove("active");
-            }
+    //         for (var j = 0; j < allTabContent.length; j++) {
+    //             allTabContent[j].style.display = "none";
+    //             allTabButtons[j].classList.remove("active");
+    //         }
 
-            tabContent.style.display = "block";
-            this.classList.add("active");
-        });
-    }
-    document.querySelector(".tablinks").click();
+    //         tabContent.style.display = "block";
+    //         this.classList.add("active");
+    //     });
+    // }
+    // document.querySelector(".tablinks").click();
 
 
 
 
     
-    function mgAutoSlider(sliderWrapName, autoSlideInterval = 3000) 
-    {
-        const sliderParent = document.querySelector('.' + sliderWrapName);
-        const sliderWrap = sliderParent.querySelector('.slider-wrap');
-        const slideCount = sliderWrap.querySelectorAll(".slide-card").length;
-        let currentIndex = 0;
-        let autoSlideTimer;
+    // function mgAutoSlider(sliderWrapName, autoSlideInterval = 3000) 
+    // {
+    //     const sliderParent = document.querySelector('.' + sliderWrapName);
+    //     const sliderWrap = sliderParent.querySelector('.slider-wrap');
+    //     const slideCount = sliderWrap.querySelectorAll(".slide-card").length;
+    //     let currentIndex = 0;
+    //     let autoSlideTimer;
       
-        // Create indicators for each slide
-        const sliderIndicators = document.createElement("div");
-        sliderIndicators.classList.add("indicators");
-        for (let i = 0; i < slideCount; i++) {
-          const indicator = document.createElement("div");
-          indicator.classList.add("indicator");
-          sliderIndicators.appendChild(indicator);
-        }
-        sliderWrap.parentNode.insertBefore(sliderIndicators, sliderWrap.nextSibling);
+    //     // Create indicators for each slide
+    //     const sliderIndicators = document.createElement("div");
+    //     sliderIndicators.classList.add("indicators");
+    //     for (let i = 0; i < slideCount; i++) {
+    //       const indicator = document.createElement("div");
+    //       indicator.classList.add("indicator");
+    //       sliderIndicators.appendChild(indicator);
+    //     }
+    //     sliderWrap.parentNode.insertBefore(sliderIndicators, sliderWrap.nextSibling);
       
-        // Function to update the indicators
-        function updateIndicators() {
-          const indicators = sliderIndicators.querySelectorAll(".indicator");
-          indicators.forEach((indicator, index) => {
-            indicator.classList.toggle("active", index === currentIndex);
-          });
-        }
+    //     // Function to update the indicators
+    //     function updateIndicators() {
+    //       const indicators = sliderIndicators.querySelectorAll(".indicator");
+    //       indicators.forEach((indicator, index) => {
+    //         indicator.classList.toggle("active", index === currentIndex);
+    //       });
+    //     }
 
 
       
-        // Function to go to the next slide
-        function goToNextSlide() {
-          currentIndex = (currentIndex + 1) % slideCount;
-          updateSliderPosition();
-          updateIndicators();
-        }
+    //     // Function to go to the next slide
+    //     function goToNextSlide() {
+    //       currentIndex = (currentIndex + 1) % slideCount;
+    //       updateSliderPosition();
+    //       updateIndicators();
+    //     }
       
-        // Function to update the slider position with slide effect
-        function updateSliderPosition() {
-          const translateValue = -currentIndex * sliderWrap.offsetWidth;
-          sliderWrap.style.transform = `translateX(${translateValue}px)`;
-        }
+    //     // Function to update the slider position with slide effect
+    //     function updateSliderPosition() {
+    //       const translateValue = -currentIndex * sliderWrap.offsetWidth;
+    //       sliderWrap.style.transform = `translateX(${translateValue}px)`;
+    //     }
       
-        // Start the auto slider
-        function startAutoSlider() {
-          autoSlideTimer = setInterval(goToNextSlide, autoSlideInterval);
-        }
+    //     // Start the auto slider
+    //     function startAutoSlider() {
+    //       autoSlideTimer = setInterval(goToNextSlide, autoSlideInterval);
+    //     }
       
-        // Stop the auto slider
-        function stopAutoSlider() {
-          clearInterval(autoSlideTimer);
-        }
+    //     // Stop the auto slider
+    //     function stopAutoSlider() {
+    //       clearInterval(autoSlideTimer);
+    //     }
       
-        // Initial setup
-        updateIndicators();
-        startAutoSlider();
+    //     // Initial setup
+    //     updateIndicators();
+    //     startAutoSlider();
       
-        // Add a click event to indicators
-        sliderIndicators.addEventListener("click", (event) => {
-          if (event.target.classList.contains("indicator")) {
-            currentIndex = Array.from(sliderIndicators.children).indexOf(event.target);
-            updateSliderPosition();
-            updateIndicators();
-          }
-        });
+    //     // Add a click event to indicators
+    //     sliderIndicators.addEventListener("click", (event) => {
+    //       if (event.target.classList.contains("indicator")) {
+    //         currentIndex = Array.from(sliderIndicators.children).indexOf(event.target);
+    //         updateSliderPosition();
+    //         updateIndicators();
+    //       }
+    //     });
       
-        // Add mouseover and mouseout events to pause and resume the auto slider
-        sliderWrap.parentNode.addEventListener("mouseover", stopAutoSlider);
-        sliderWrap.parentNode.addEventListener("mouseout", startAutoSlider);
-    }
+    //     // Add mouseover and mouseout events to pause and resume the auto slider
+    //     sliderWrap.parentNode.addEventListener("mouseover", stopAutoSlider);
+    //     sliderWrap.parentNode.addEventListener("mouseout", startAutoSlider);
+    // }
       
-      mgAutoSlider("testimonials", autoSlideInterval = 3000);
+    //   mgAutoSlider("testimonials", autoSlideInterval = 3000);
+
+
 
     // function mgAutoSlider(sliderWrapName, autoSlideInterval = 3000) {
     //     const sliderParent = document.querySelector('.' + sliderWrapName);
@@ -273,7 +275,114 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+    
+        // Table Of Content   ============ start =====>
+        const tableHeader = document.querySelector(".toc-header");
+        const tableCrossBtn = document.querySelector(".toc-toggle-btn");
+        const tableOfcontentBody = document.querySelector(".mg-toc-wrap .toc-body");
+        const tableDropdowns = document.querySelectorAll(".toc-body ul ul");
+    
+    
+    
+    
+        // Function to check if it's a mobile device
+        function isMobileDevice() {
+            return window.innerWidth <= 768; // Adjust the width as needed
+        }
+    
+    
+        // Function to hide table of content on mobile devices
+        function hideTableOfContentOnMobile() {
+            if (isMobileDevice()) {
+                tableOfcontentBody.classList.add("hidden");
+                tableHeader.classList.remove('head-border');
+            }
+        }
+    
+    
+        // Initial check to hide on page load if it's a mobile device
+        if (tableHeader) {
+            tableHeader.classList.add('head-border');
+            hideTableOfContentOnMobile();
+            const minus = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <rect width="11" height="2" rx="1" fill="#000"/></svg>';
+            const plus =
+                '<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.68 6.2H6.8v4.12H4.79V6.2H.93V4.37h3.86V.27H6.8v4.1h3.88z" fill="#000"></path></svg>';
+    
+            tableHeader.addEventListener("click", function () {
+                if (tableOfcontentBody.classList.contains("hidden")) {
+                    tableOfcontentBody.classList.remove("hidden");
+                    tableHeader.classList.add('head-border');
+                    tableCrossBtn.innerHTML = plus;
+                } else {
+                    tableOfcontentBody.classList.add("hidden");
+                    tableHeader.classList.remove('head-border');
+                    tableCrossBtn.innerHTML = minus;
+                }
+            });
+        }
+    
+        // table nested li (converted into dropdown)
+        if (tableDropdowns) {
+            tableDropdowns.forEach((tableDropdown) => {
+                const parentli = tableDropdown.parentElement;
+                parentli.classList.add("drop-down")
+    
+                parentli.addEventListener("click", function (e) {
+                    this.classList.toggle("showtocdrop");
+                });
+    
+            });
+    
+        }
+    
+    
+    
+    
+    
+    
+        // Check on window resize to adjust visibility
+        window.addEventListener("resize", hideTableOfContentOnMobile);
+    
+        const tableOfContentItems = document.querySelectorAll(".toc-body ul li a");
+        tableOfContentItems.forEach((link) => {
+            link.addEventListener("click", scrollToSection);
+        });
+    
+        function scrollToSection(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const offset = targetElement.offsetTop - 100;
+                const top = offset > 0 ? offset : 0;
+                window.scrollTo({
+                    top: top,
+                    behavior: "smooth",
+                });
+            }
+        }
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const targetId = entry.target.getAttribute("id");
+                    const link = document.querySelector(`.toc-body ul li a[href="#${targetId}"]`);
+                    if (entry.isIntersecting) {
+                        link?.parentElement.classList.add("active");
+                    } else {
+                        link?.parentElement.classList.remove("active");
+                    }
+                });
+            },
+            {
+                threshold: 0.5,
+            }
+        );
+        document.querySelectorAll("h2, h3, h4, h5, h6").forEach((element) => {
+            observer.observe(element);
+        });
+    
     // Scroll to top   ============ start =====>
+
 
     let mybutton = document.getElementById("scroll_to_top");
     window.onscroll = function () {
