@@ -546,7 +546,7 @@ table thead th {
 }
 
 /* Notes | Sources | Also Read */
-:is(.mg-block-note, .mg-block-source, .mg-block-also-read, .mg-auth-card) {
+:is(.mg-block-note, .mg-block-source, .mg-block-also-read, .blog-content .mg-auth-card) {
   border-radius: var(--rad-1);
   padding: 20px;
 }
@@ -566,7 +566,7 @@ table thead th {
   border-left: 10px solid #FF6584;
 }
 
-.mg-auth-card {
+.blog-content .mg-auth-card {
   border: 1px solid var(--pc);
   border-left: 10px solid var(--pc);
 }
