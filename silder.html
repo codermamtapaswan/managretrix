@@ -29,41 +29,13 @@
       background: linear-gradient(to left top, #031A9A, #8B53FF);
     }
 
-    .wrapper {
+    .slide-wrapper {
       max-width: 1100px;
       width: 100%;
       position: relative;
     }
 
-    .wrapper i {
-      top: 50%;
-      height: 50px;
-      width: 50px;
-      cursor: pointer;
-      font-size: 1.25rem;
-      position: absolute;
-      text-align: center;
-      line-height: 50px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
-      transform: translateY(-50%);
-      transition: transform 0.1s linear;
-    }
-
-    .wrapper i:active {
-      transform: translateY(-50%) scale(0.85);
-    }
-
-    .wrapper i:first-child {
-      left: -22px;
-    }
-
-    .wrapper i:last-child {
-      right: -22px;
-    }
-
-    .wrapper .carousel {
+    .slide-wrapper .carousel {
       display: grid;
       grid-auto-flow: column;
       grid-auto-columns: calc((100% / 3) - 12px);
@@ -88,114 +60,161 @@
       scroll-behavior: auto;
     }
 
-    .carousel.dragging .card {
+    .carousel.dragging .slider-card {
       cursor: grab;
       user-select: none;
     }
 
-    .carousel :where(.card, .img) {
+    .carousel .slider-card {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .carousel .card {
+    .carousel .slider-card {
       scroll-snap-align: start;
       height: 342px;
-      list-style: none;
-      background: #fff;
-      cursor: pointer;
-      padding-bottom: 15px;
       flex-direction: column;
-      border-radius: 8px;
     }
 
-    .carousel .card .img {
-      background: #8B53FF;
-      height: 148px;
-      width: 148px;
+    .indicators {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      background-color: #fff;
       border-radius: 50%;
+      margin: 0 6px;
+      cursor: pointer;
     }
 
-    .card .img img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #fff;
-    }
-
-    .carousel .card h2 {
-      font-weight: 500;
-      font-size: 1.56rem;
-      margin: 30px 0 5px;
-    }
-
-    .carousel .card span {
-      color: #6A6D78;
-      font-size: 1.31rem;
+    .indicator.active {
+      background-color: #8B53FF;
     }
 
     @media screen and (max-width: 900px) {
-      .wrapper .carousel {
+      .slide-wrapper .carousel {
         grid-auto-columns: calc((100% / 2) - 9px);
       }
     }
 
     @media screen and (max-width: 600px) {
-      .wrapper .carousel {
+      .slide-wrapper .carousel {
         grid-auto-columns: 100%;
       }
     }
+
   </style>
 </head>
 
 <body>
-  <div class="wrapper">
-    <i id="left" class="fa-solid fa-angle-left"></i>
-    <ul class="carousel">
-      <li class="card">
-        <div class="img"><img src="images/img-1.jpg" alt="img" draggable="false"></div>
-        <h2>Blanche Pearson</h2>
-        <span>Sales Manager</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="images/img-2.jpg" alt="img" draggable="false"></div>
-        <h2>Joenas Brauers</h2>
-        <span>Web Developer</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="images/img-3.jpg" alt="img" draggable="false"></div>
-        <h2>Lariach French</h2>
-        <span>Online Teacher</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="images/img-4.jpg" alt="img" draggable="false"></div>
-        <h2>James Khosravi</h2>
-        <span>Freelancer</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="images/img-5.jpg" alt="img" draggable="false"></div>
-        <h2>Kristina Zasiadko</h2>
-        <span>Bank Manager</span>
-      </li>
-      <li class="card">
-        <div class="img"><img src="images/img-6.jpg" alt="img" draggable="false"></div>
-        <h2>Donald Horton</h2>
-        <span>App Designer</span>
-      </li>
-    </ul>
-    <i id="right" class="fa-solid fa-angle-right"></i>
-  </div>
+  <div class="slide-wrapper">
 
+    <div class="carousel">
+
+      <div class="slide-card">
+        <div class="testimonial-wrap flex">
+          <p class="mb-0">It is a long established fact that a reader will be distracted by the
+            readable content of a page when looking at its layout. The point of using Lorem
+            Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.</p>
+          <hr>
+          <div class="test-detail">
+            <img src="https://getassist.net/wp-content/uploads/2024/01/Himanshu-kumar.webp"
+              alt="" class="img-fluid">
+            <span class="h6">Emily Johnson</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="testimonial-wrap flex">
+          <p class="mb-0">It is a long established fact that a reader will be distracted by the
+            readable content of a page when looking at its layout. The point of using Lorem
+            Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.</p>
+          <hr>
+          <div class="test-detail">
+            <img src="https://getassist.net/wp-content/uploads/2024/01/Himanshu-kumar.webp"
+              alt="" class="img-fluid">
+            <span class="h6">Emily Johnson</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="testimonial-wrap flex">
+          <p class="mb-0">It is a long established fact that a reader will be distracted by the
+            readable content of a page when looking at its layout. The point of using Lorem
+            Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.</p>
+          <hr>
+          <div class="test-detail">
+            <img src="https://getassist.net/wp-content/uploads/2024/01/Himanshu-kumar.webp"
+              alt="" class="img-fluid">
+            <span class="h6">Emily Johnson</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="testimonial-wrap flex">
+          <p class="mb-0">It is a long established fact that a reader will be distracted by the
+            readable content of a page when looking at its layout. The point of using Lorem
+            Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.</p>
+          <hr>
+          <div class="test-detail">
+            <img src="https://getassist.net/wp-content/uploads/2024/01/Himanshu-kumar.webp"
+              alt="" class="img-fluid">
+            <span class="h6">Emily Johnson</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="testimonial-wrap flex">
+          <p class="mb-0">It is a long established fact that a reader will be distracted by the
+            readable content of a page when looking at its layout. The point of using Lorem
+            Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.</p>
+          <hr>
+          <div class="test-detail">
+            <img src="https://getassist.net/wp-content/uploads/2024/01/Himanshu-kumar.webp"
+              alt="" class="img-fluid">
+            <span class="h6">Emily Johnson</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-card">
+        <div class="testimonial-wrap flex">
+          <p class="mb-0">It is a long established fact that a reader will be distracted by the
+            readable content of a page when looking at its layout. The point of using Lorem
+            Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.</p>
+          <hr>
+          <div class="test-detail">
+            <img src="https://getassist.net/wp-content/uploads/2024/01/Himanshu-kumar.webp"
+              alt="" class="img-fluid">
+            <span class="h6">Emily Johnson</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="indicators"></div>
+
+  </div>
   <script>
-    const wrapper = document.querySelector(".wrapper");
+    const wrapper = document.querySelector(".slide-wrapper");
     const carousel = document.querySelector(".carousel");
-    const firstCardWidth = carousel.querySelector(".card").offsetWidth;
-    const arrowBtns = document.querySelectorAll(".wrapper i");
+    const indicatorsContainer = document.querySelector(".indicators");
+    const firstCardWidth = carousel.querySelector(".slide-card").offsetWidth;
+    const arrowBtns = document.querySelectorAll(".slide-wrapper i");
     const carouselChildrens = [...carousel.children];
 
-    let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+    let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId, activeIndicator;
 
     // Get the number of cards that can fit in the carousel at once
     let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
@@ -263,9 +282,22 @@
     const autoPlay = () => {
       if (window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
       // Autoplay the carousel after every 2500 ms
-      timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 2500);
+      timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 1000);
     }
     autoPlay();
+    const updateActiveIndicator = () => {
+      const scrollLeft = carousel.scrollLeft;
+      const index = Math.round(scrollLeft / firstCardWidth);
+      const indicators = document.querySelectorAll(".indicator");
+      indicators.forEach((indicator, i) => {
+        if (i === index) {
+          setActiveIndicator(indicator);
+        }
+      });                                                                                              
+    }
+
+    carousel.addEventListener("scroll", updateActiveIndicator);
+
 
     carousel.addEventListener("mousedown", dragStart);
     carousel.addEventListener("mousemove", dragging);
@@ -273,6 +305,28 @@
     carousel.addEventListener("scroll", infiniteScroll);
     wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
     wrapper.addEventListener("mouseleave", autoPlay);
+
+    // Create indicators
+    for (let i = 0; i < carouselChildrens.length / 2; i++) {
+      const indicator = document.createElement("div");
+      indicator.classList.add("indicator");
+      if (i === 0) {
+        indicator.classList.add("active");
+        activeIndicator = indicator;
+      }
+      indicator.addEventListener("click", () => {
+        carousel.scrollLeft = i * firstCardWidth;
+        setActiveIndicator(indicator);
+      });
+      indicatorsContainer.appendChild(indicator);
+    }
+
+    // Function to set active indicator
+    const setActiveIndicator = (indicator) => {
+      activeIndicator.classList.remove("active");
+      indicator.classList.add("active");
+      activeIndicator = indicator;
+    }
   </script>
 
 </body>

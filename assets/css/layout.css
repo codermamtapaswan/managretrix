@@ -875,41 +875,82 @@ header ul {
 }
 
 /* testimonial-wrap___________________ */
-.testimonials .slider {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.testimonials .slider-wrap {
-  width: 100%;
-  transition: transform 0.5s ease;
-  box-sizing: content-box;
-  position: relative;
-  display: flex;
-}
-
-.testimonials .slide-card {
+.slide-wrapper {
+  max-width: 1100px;
   width: 100%;
   position: relative;
+}
+
+.slide-wrapper .carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel.dragging .slider-card {
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel .slider-card {
   display: flex;
   justify-content: center;
-  flex-shrink: 0;
-}
-
-.testimonials .slider .indicators {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
-.testimonials .slider .indicator {
-  cursor: pointer;
+.carousel .slider-card {
+  scroll-snap-align: start;
+  height: 342px;
+  flex-direction: column;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.indicator {
   width: 50px;
   height: 2px;
+  margin: 0 6px;
+  cursor: pointer;
+  background:#9addcc;
+}
+
+.indicator.active {
+  background:var(--pc);
+}
+
+@media screen and (max-width: 900px) {
+  .slide-wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .slide-wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
 }
 
 
@@ -931,15 +972,11 @@ header ul {
   margin-right: 10px;
 }
 
-/* blog_______________________ */
+/* blog Page_______________________ */
+
 .blog .sec-title {
   text-align: left;
 }
-
-
-
-
-
 
 
 /* # Single Page

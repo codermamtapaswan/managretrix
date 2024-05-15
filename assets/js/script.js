@@ -135,104 +135,127 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    function mgAutoSlider(sliderWrapName, autoSlideInterval = 3000) {
-        const breakpoints = {
-            desktop: { slidesPerView: 3, spaceBetween: 30 },
-            tablet: { slidesPerView: 2, spaceBetween: 20 },
-            mobile: { slidesPerView: 1, spaceBetween: 10 }
-        };
+// testimonial slider
+const wrapper = document.querySelector(".slide-wrapper");
+const carousel = document.querySelector(".carousel");
+const indicatorsContainer = document.querySelector(".indicators");
+const firstCardWidth = carousel.querySelector(".slide-card").offsetWidth;
+const arrowBtns = document.querySelectorAll(".slide-wrapper i");
+const carouselChildrens = [...carousel.children];
 
-        const sliderParent = document.querySelector('.' + sliderWrapName);
-        const sliderWrap = sliderParent.querySelector('.slider-wrap');
-        const slideCards = sliderWrap.querySelectorAll(".slide-card");
-        const slideCount = slideCards.length;
-        let currentIndex = 0;
-        let autoSlideTimer;
+let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId, activeIndicator;
 
-        // Create indicators for each slide
-        const sliderIndicators = document.createElement("div");
-        sliderIndicators.classList.add("indicators");
-        for (let i = 0; i < slideCount; i++) {
-            const indicator = document.createElement("div");
-            indicator.classList.add("indicator");
-            sliderIndicators.appendChild(indicator);
-        }
-        sliderWrap.parentNode.insertBefore(sliderIndicators, sliderWrap.nextSibling);
+// Get the number of cards that can fit in the carousel at once
+let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
 
-        // Function to update the indicators
-        function updateIndicators() {
-            const indicators = sliderIndicators.querySelectorAll(".indicator");
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle("active", index === currentIndex);
-            });
-        }
+// Insert copies of the last few cards to beginning of carousel for infinite scrolling
+carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+  carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+});
 
-        // Function to determine the device type based on the viewport width
-        function getDeviceType() {
-            const viewportWidth = window.innerWidth;
-            if (viewportWidth >= 1024) {
-                return 'desktop';
-            } else if (viewportWidth >= 768) {
-                return 'tablet';
-            } else {
-                return 'mobile';
-            }
-        }
+// Insert copies of the first few cards to end of carousel for infinite scrolling
+carouselChildrens.slice(0, cardPerView).forEach(card => {
+  carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+});
 
-        // Function to update slidesPerView and spaceBetween based on window width
-        function updateSlideConfig() {
-            const deviceType = getDeviceType();
-            return breakpoints[deviceType];
-        }
+// Scroll the carousel at appropriate postition to hide first few duplicate cards on Firefox
+carousel.classList.add("no-transition");
+carousel.scrollLeft = carousel.offsetWidth;
+carousel.classList.remove("no-transition");
 
-        // Function to go to the next slide
-        function goToNextSlide() {
-            const { slidesPerView } = updateSlideConfig();
-            currentIndex = (currentIndex + 1) % (slideCount - (slidesPerView - 1));
-            updateSliderPosition();
-            updateIndicators();
-        }
+// Add event listeners for the arrow buttons to scroll the carousel left and right
+arrowBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+  });
+});
 
-        // Function to update the slider position with slide effect
-        function updateSliderPosition() {
-            const { slidesPerView, spaceBetween } = updateSlideConfig();
-            const slideWidth = (sliderWrap.offsetWidth - (slidesPerView - 1) * spaceBetween) / slidesPerView;
-            const translateValue = -currentIndex * (slideWidth + spaceBetween);
-            sliderWrap.style.transform = `translateX(${translateValue}px)`;
-        }
+const dragStart = (e) => {
+  isDragging = true;
+  carousel.classList.add("dragging");
+  // Records the initial cursor and scroll position of the carousel
+  startX = e.pageX;
+  startScrollLeft = carousel.scrollLeft;
+}
 
-        // Start the auto slider
-        function startAutoSlider() {
-            autoSlideTimer = setInterval(goToNextSlide, autoSlideInterval);
-        }
+const dragging = (e) => {
+  if (!isDragging) return; // if isDragging is false return from here
+  // Updates the scroll position of the carousel based on the cursor movement
+  carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+}
 
-        // Stop the auto slider
-        function stopAutoSlider() {
-            clearInterval(autoSlideTimer);
-        }
+const dragStop = () => {
+  isDragging = false;
+  carousel.classList.remove("dragging");
+}
 
-        // Initial setup
-        updateIndicators();
-        startAutoSlider();
+const infiniteScroll = () => {
+  // If the carousel is at the beginning, scroll to the end
+  if (carousel.scrollLeft === 0) {
+    carousel.classList.add("no-transition");
+    carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+    carousel.classList.remove("no-transition");
+  }
+  // If the carousel is at the end, scroll to the beginning
+  else if (Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+    carousel.classList.add("no-transition");
+    carousel.scrollLeft = carousel.offsetWidth;
+    carousel.classList.remove("no-transition");
+  }
 
-        // Add mouseover and mouseout events to pause and resume the auto slider
-        sliderWrap.parentNode.addEventListener("mouseover", stopAutoSlider);
-        sliderWrap.parentNode.addEventListener("mouseout", startAutoSlider);
+  // Clear existing timeout & start autoplay if mouse is not hovering over carousel
+  clearTimeout(timeoutId);
+  if (!wrapper.matches(":hover")) autoPlay();
+}
 
-        // Add a click event to indicators
-        sliderIndicators.addEventListener("click", (event) => {
-            if (event.target.classList.contains("indicator")) {
-                currentIndex = Array.from(sliderIndicators.children).indexOf(event.target);
-                updateSliderPosition();
-                updateIndicators();
-            }
-        });
-
-        // Recalculate slider position when the window is resized
-        window.addEventListener('resize', updateSliderPosition);
+const autoPlay = () => {
+  if (window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
+  // Autoplay the carousel after every 2500 ms
+  timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 1000);
+}
+autoPlay();
+const updateActiveIndicator = () => {
+  const scrollLeft = carousel.scrollLeft;
+  const index = Math.round(scrollLeft / firstCardWidth);
+  const indicators = document.querySelectorAll(".indicator");
+  indicators.forEach((indicator, i) => {
+    if (i === index) {
+      setActiveIndicator(indicator);
     }
+  });                                                                                              
+}
 
-    mgAutoSlider("testimonials", autoSlideInterval = 3000);
+carousel.addEventListener("scroll", updateActiveIndicator);
+
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("scroll", infiniteScroll);
+wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+wrapper.addEventListener("mouseleave", autoPlay);
+
+// Create indicators
+for (let i = 0; i < carouselChildrens.length / 2; i++) {
+  const indicator = document.createElement("div");
+  indicator.classList.add("indicator");
+  if (i === 0) {
+    indicator.classList.add("active");
+    activeIndicator = indicator;
+  }
+  indicator.addEventListener("click", () => {
+    carousel.scrollLeft = i * firstCardWidth;
+    setActiveIndicator(indicator);
+  });
+  indicatorsContainer.appendChild(indicator);
+}
+
+// Function to set active indicator
+const setActiveIndicator = (indicator) => {
+  activeIndicator.classList.remove("active");
+  indicator.classList.add("active");
+  activeIndicator = indicator;
+}
 
 
 
