@@ -1232,14 +1232,13 @@ table tr th {
 .block-heading {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 9px;
   position: relative;
   padding-bottom: 20px;
 }
-
 .block-heading::before {
   content: "";
-  width: 46px;
+  width: 28px;
   height: 45px;
 }
 

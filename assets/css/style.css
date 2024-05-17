@@ -579,16 +579,19 @@ table thead th {
 }
 
 .mg-block-note .block-heading::before {
-  background: url("../images/notes.svg") no-repeat center;
+  background: url("../images/notes.svg") no-repeat left center;
+  background-size: contain;
 
 }
 
 .mg-block-source .block-heading::before {
-  background: url("../images/source.svg") no-repeat center;
+  background: url("../images/source.svg") no-repeat left center;
+  background-size: contain;
 }
 
 .mg-block-also-read .block-heading::before {
-  background: url("../images/also-read.svg") no-repeat center;
+  background: url("../images/also-read.svg") no-repeat left center;
+  background-size: contain;
 }
 
 
