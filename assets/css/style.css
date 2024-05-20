@@ -598,7 +598,7 @@ table thead th {
 
 /* # All Author  and Author Single Page 
   =================================================*/
-.mg-auth-card {
+  .mg_author_archive_page .mg-auth-card {
   background: var(--sc);
 }
 

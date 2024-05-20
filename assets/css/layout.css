@@ -618,7 +618,7 @@ header ul {
   width: 16px;
   height: 16px;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .dropdown ul {
@@ -1044,8 +1044,8 @@ header ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
+
 
 .toc-header.head-border {
   padding-bottom: 10px;
@@ -1094,6 +1094,7 @@ header ul {
   opacity: 0;
   height: 0;
   visibility: hidden;
+  transform: scaleY(0);
 }
 
 .toc-body .showtocdrop>ul {
@@ -1103,6 +1104,7 @@ header ul {
   margin-top: 15px;
   list-style-type: disc;
   margin-bottom: 0 !important;
+  transform: scaleY(1);
 }
 
 .sidebar .mg-social-links {
@@ -1165,7 +1167,7 @@ table tr th {
 
 /* pros-cons */
 .mg-block-pros-cons {
-  align-items: stretch;
+  align-items: unset;
 }
 
 .mg-block-pros-cons [class*='wrap'] {
@@ -1261,9 +1263,11 @@ table tr th {
 
 /* # All Author Page || Author Single Page 
   =================================================*/
-.mg-auth-card {
+  
+ .mg_author_archive_page .mg-auth-card {
   padding: 30px;
   border-radius: 8px;
+  text-align: center;
 }
 
 .all-author-wrap .author-img img {
