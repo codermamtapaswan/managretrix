@@ -128,6 +128,11 @@ li {
   background: var(--sc);
 }
 
+/* title for all site  */
+[class*="title"] {
+  font-family: var(--heading-font);
+}
+
 
 
 /* # Common Components
@@ -165,7 +170,10 @@ li {
 
 
 .blog-title {
+  font-size: 18px;
+  line-height: 28px;
   color: var(--black);
+  font-family: var(--heading-font);
 }
 
 .cat-btn {
@@ -669,7 +677,6 @@ footer {
 }
 
 footer .title {
-  font-weight: var(--fw-1);
   color: var(--black);
 }
 

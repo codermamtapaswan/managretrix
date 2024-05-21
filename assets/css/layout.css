@@ -77,6 +77,8 @@ p {
 /* # Common Class
   =================================================*/
 
+
+
 /* Flex ___________ Starts */
 :is([class*="flex"], .mg-timeline) {
   display: flex;
@@ -342,9 +344,6 @@ hr {
 }
 
 .blog-title {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 28px;
   display: block;
 }
 
@@ -934,11 +933,11 @@ header ul {
   height: 2px;
   margin: 0 6px;
   cursor: pointer;
-  background:#c4f8eb;
+  background: #c4f8eb;
 }
 
 .indicator.active {
-  background:var(--pc);
+  background: var(--pc);
 }
 
 @media screen and (max-width: 900px) {
@@ -1238,6 +1237,7 @@ table tr th {
   position: relative;
   padding-bottom: 20px;
 }
+
 .block-heading::before {
   content: "";
   width: 28px;
@@ -1263,8 +1263,8 @@ table tr th {
 
 /* # All Author Page || Author Single Page 
   =================================================*/
-  
- .mg_author_archive_page .mg-auth-card {
+
+.mg_author_archive_page .mg-auth-card {
   padding: 30px;
   border-radius: 8px;
   text-align: center;
