@@ -184,6 +184,19 @@ li {
   font-family: var(--heading-font);
 }
 
+.blog-title {
+  color: #0000;
+  background:
+    linear-gradient(90deg, var(--pc) 50%, #000 0) var(--_p, 100%)/200% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: .4s;
+}
+
+.blog-title:hover {
+  --_p: 0%;
+}
+
 .cat-btn {
   background: var(--sc);
   border-radius: var(--rad-2);
@@ -196,6 +209,8 @@ li {
 
 .auth-name {
   color: var(--black);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .auth-name:hover {
