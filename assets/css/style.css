@@ -76,6 +76,7 @@ h1,
   font-family: var(--heading-font);
   line-height: 1.5;
   text-transform: capitalize;
+  font-weight: var(--fs-2);
 }
 
 h1,
@@ -106,6 +107,11 @@ h5,
 h6,
 .h6 {
   font-size: 1rem !important;
+}
+
+p,
+li {
+  font-weight: 500 !important;
 }
 
 
@@ -456,6 +462,13 @@ header nav ul {
 
 
 /* Blog Contents _____________start */
+.all-page .blog-content ul:not(.mg-block-pros-cons ul, [class*='social-links'] ul) {
+  list-style: disc;
+}
+
+.all-page .blog-content ul:not(.mg-block-pros-cons ul, [class*='social-links'] ul) li::before {
+  display: none;
+}
 
 /* blockquote */
 blockquote {
@@ -598,7 +611,7 @@ table thead th {
 
 /* # All Author  and Author Single Page 
   =================================================*/
-  .mg_author_archive_page .mg-auth-card {
+.mg_author_archive_page .mg-auth-card {
   background: var(--sc);
 }
 
