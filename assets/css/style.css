@@ -168,6 +168,14 @@ li {
   background: var(--white);
 }
 
+.mg-flip-card>.mg-card-content {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: -50px;
+  z-index: 1;
+}
+
 
 .blog-title {
   font-size: 18px;
@@ -289,7 +297,6 @@ header nav ul {
 /* # Home page
   =================================================*/
 
-
 /* hr-Process Section________________Start */
 .tablinks {
   box-shadow: var(--shadow);
@@ -313,10 +320,11 @@ header nav ul {
 }
 
 
+
 .tablinks span,
 .hr-tasks .task-box span {
   font-size: var(--fs-2);
-  font-weight: var(--fw-2);
+  font-weight: var(--fw-1);
   color: var(--black);
 }
 

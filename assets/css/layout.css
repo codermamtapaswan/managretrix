@@ -335,13 +335,6 @@ hr {
   gap: 10px;
 }
 
-.mg-flip-card>.mg-card-content {
-  width: 90%;
-  margin: 0 auto;
-  padding: 20px;
-  margin-top: -50px;
-  z-index: 1;
-}
 
 .blog-title {
   display: block;
@@ -773,6 +766,26 @@ header ul {
   background: var(--bd-color);
 }
 
+.clients figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.clients figure img {
+  padding: 0 20px;
+  max-width: 90%;
+  transition: 0.3s;
+  opacity: 0.5;
+  filter: grayscale(100);
+}
+
+.clients figure img:hover {
+  filter: none;
+  opacity: 1;
+}
+
 
 
 /* hr-Process Section________________Start */
@@ -804,6 +817,12 @@ header ul {
 
 .hr-tasks .task-box img {
   width: 30%;
+  transition: var(--transition);
+}
+
+.hr-tasks .task-box:hover img {
+  transform: scale(.8);
+  transition: var(--transition);
 }
 
 [class*="col"]:has(.task-box):nth-child(even) {
@@ -1604,11 +1623,6 @@ footer .container .row-gap {
   .award-wrap .col {
     width: 25%;
     padding: 0;
-  }
-
-  .clients img {
-    border: 1px solid var(--bd-color);
-    padding: 5px;
   }
 
   [class*="col"]:has(.work-box) .icon::after,
