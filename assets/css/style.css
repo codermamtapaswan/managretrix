@@ -595,8 +595,10 @@ table thead th {
 }
 
 /* Accordians faq */
-.mg-block-faq details:not(:last-child) {
-  border-bottom: 1px solid var(--bd-color);
+.mg-block-faq details {
+  padding: 20px;
+  border-radius: var(--rad-2);
+  box-shadow: var(--shadow-sm);
 }
 
 .mg-block-faq summary {
