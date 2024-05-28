@@ -1,8 +1,9 @@
-# Digital Planner - html Theme Template
+# Managetrix - html Theme Template
 
 Digital Planner is a blog website template designed to be easily converted into a WordPress theme. This template provides a clean and modern layout for creating a digital planner or journaling website on the WordPress platform.
 
-![127 0 0 1_5500_index html (2)](h![codermamtapaswan github io_managretrix_](https://github.com/codermamtapaswan/managretrix/assets/163414646/c24fd06d-6da0-4288-8573-8c67540d4ab6)
+![codermamtapaswan github io_managretrix_](https://github.com/codermamtapaswan/managretrix/assets/163414646/2474f1f7-8593-4312-9f24-26b89ea6ea3d)
+
 
 
 
