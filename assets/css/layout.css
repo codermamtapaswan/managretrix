@@ -1059,6 +1059,7 @@ header ul {
   transform: scaleY(1);
 }
 
+
 .sidebar .mg-social-links {
   gap: 20px;
   padding: 20px;
@@ -1067,6 +1068,44 @@ header ul {
 .mg-social-links>.h6 {
   margin-bottom: 0 !important;
 }
+
+/* .toc-body>ul>li {
+  padding-left: 25px;
+  position: relative;
+}
+
+.toc-body>ul>li:before {
+  content: "";
+  left: 6px;
+  position: absolute;
+  top: 0;
+  width: 1px;
+  background-color: #373d3d;
+  height: 100%;
+  opacity: .15;
+  z-index: 1;
+}
+
+.toc-body>ul>li.active {
+  color: #000;
+}
+
+.toc-body>ul>li.active a:before {
+  background-color: #0b0b0b;
+  content: "";
+  height: 50%;
+  left: -19px;
+  position: absolute;
+  top: 0;
+  width: 1px;
+  z-index: 2;
+}
+
+.toc-body>ul>li:first-child:after,
+.toc-body>ul>li:first-child:before {
+  height: calc(100% - 7px);
+  top: 7px;
+} */
 
 /* Blog Contents _____________start */
 

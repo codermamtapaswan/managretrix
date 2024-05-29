@@ -288,7 +288,7 @@ header {
 }
 
 :is(header, footer) li a {
-  color: var(--black);
+  color: var(--text);
 }
 
 :is(header, footer) li a:hover,
