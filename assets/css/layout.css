@@ -1075,6 +1075,8 @@ header ul {
 blockquote {
   padding: 25px;
   position: relative;
+  --s: 20px;
+  margin: calc(2 * var(--s)) 0 !important;
 }
 
 blockquote::before,
@@ -1086,13 +1088,13 @@ blockquote::after {
 }
 
 blockquote::before {
-  top: -20px;
+  top: calc(-1 * var(--s));
   left: 40px;
 }
 
 blockquote::after {
   right: 40px;
-  bottom: -20px;
+  bottom: calc(-1 * var(--s));
   rotate: -180deg;
 }
 

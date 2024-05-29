@@ -125,24 +125,23 @@ li {
 
 
 .all-page .blog-content :is(p, li, h2, h3, h4, h5, h6, summary):not(#breadcrumbs, .gd-toc-wrap ul li, [class*='social-links'] ul li) a {
-  --b: 0.1em;
-  /* the thickness of the line */
-  --c: var(--pc);
+  /* --s: 0.1em; */
+  /* --c: var(--pc); */
   /* the color */
 
   color: var(--pc);
-  padding-block: var(--b);
+  /* padding-bottom: var(--s);
   background:
-    linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%))/100% 200%,
-    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--b) no-repeat;
+    linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
   -webkit-background-clip: text, padding-box;
-  background-clip: text, padding-box;
-  transition: .3s var(--_s, 0s) linear, background-size .3s calc(.3s - var(--_s, 0s));
+  background-clip: text, padding-box; */
+  transition: 0.5s;
 }
 
 .all-page :is(p, li, h2, h3, h4, h5, h6, summary):not(#breadcrumbs, .gd-toc-wrap ul li, [class*='social-links'] ul li) a:hover {
-  --_p: 100%;
-  --_s: .3s;
+  /* --_p: 100%; */
+  text-decoration: underline;
 }
 
 
