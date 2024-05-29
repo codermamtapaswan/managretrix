@@ -1114,7 +1114,7 @@ table thead {
 
 table tr td,
 table tr th {
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 
 /* pros-cons */
@@ -1223,9 +1223,6 @@ table tr th {
   text-align: center;
 }
 
-.all-author-wrap .author-img img {
-  margin-bottom: 20px;
-}
 
 .mg-auth-card .author-img img {
   border: unset;
@@ -1253,6 +1250,7 @@ table tr th {
   transition: all 0.5s ease;
   overflow: hidden;
   text-align: center;
+  padding: 30px;
 }
 
 .all-author-wrap .mg-auth-card .author-content {
@@ -1362,9 +1360,10 @@ table tr th {
   text-align: center;
 }
 
-.mg_thankyou_page img {
+.mg_thankyou_page .page-status-content img {
   margin-bottom: 20px;
 }
+
 
 
 /* # Footer
@@ -1583,12 +1582,19 @@ footer .container .row-gap {
 }
 
 @media(max-width:600px) {
-  .header-button {
-    display: none !important;
+
+  /* # General
+  =================================================*/
+  [class*="grid"] {
+    grid-template-columns: auto;
   }
 
   [class*="mg-btn"] {
     padding: 9px 20px;
+  }
+
+  .header-button {
+    display: none !important;
   }
 
   .flex-wrap:has([class*="mg-btn"]) {
@@ -1615,6 +1621,63 @@ footer .container .row-gap {
     margin: 10px 0 0 0;
   }
 
+  .float-box {
+    position: unset;
+    --w: 0;
+  }
+
+  /* # Single Page
+  =================================================*/
+  .blog-detail {
+    gap: 10px 20px !important;
+  }
+
+  .mg-block-table {
+    overflow-x: auto;
+  }
+
+  /* # contact || Thank You || Search Not Found  || 404 Page 
+  =================================================*/
+
+  .contact-form {
+    box-shadow: unset;
+    border: none !important;
+    border-radius: unset;
+    padding: unset;
+  }
+
+  .page-status-content .row [class*='col']:has(img) {
+    order: 1;
+  }
+
+  .page-status-content .row [class*='col']:has(.page-status-title) {
+    order: 2;
+  }
+
+  .all-author-wrap .mg-auth-card {
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    gap: 0 !important;
+    border: none !important;
+  }
+
+  .all-author-wrap .author-img img {
+    margin-bottom: 10px !important;
+  }
+
+  .mg_author_archive_page .page-content .row[class*='col']:has(.sidebar) {
+    order: 1;
+  }
+
+  .mg_author_archive_page .page-content .row[class*='col']:has(.sec-title) {
+    order: 2;
+  }
+
+  /* # Footer
+  =================================================*/
+
   footer .flex-between-wrap {
     gap: 20px;
   }
@@ -1627,23 +1690,6 @@ footer .container .row-gap {
 
   footer :is(.mail, .mg-social-links) {
     order: 2;
-  }
-
-  .mg-auth-card {
-    padding: 20px;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-  }
-
-  .float-box {
-    position: unset;
-    --w: 0;
-  }
-
-  /* singe page */
-  .blog-detail {
-    gap: 10px 20px !important;
   }
 
 
