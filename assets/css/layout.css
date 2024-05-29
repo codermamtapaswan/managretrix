@@ -1566,6 +1566,14 @@ footer .container .row-gap {
   }
 
   /* single page  */
+  .mg-co-auth {
+    display: none !important;
+  }
+
+  .toc-body {
+    height: 350px;
+  }
+
   .co-auth-content>* {
     display: unset;
   }
