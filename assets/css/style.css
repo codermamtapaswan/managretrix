@@ -125,23 +125,21 @@ li {
 
 
 .all-page .blog-content :is(p, li, h2, h3, h4, h5, h6, summary):not(#breadcrumbs, .gd-toc-wrap ul li, [class*='social-links'] ul li) a {
-  /* --s: 0.1em; */
-  /* --c: var(--pc); */
-  /* the color */
-
+  --s: 0.1em;
+  --c: var(--pc);
+  font-weight: var(--fw-1);
   color: var(--pc);
-  /* padding-bottom: var(--s);
+  padding-bottom: var(--s);
   background:
     linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
     linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
   -webkit-background-clip: text, padding-box;
-  background-clip: text, padding-box; */
+  background-clip: text, padding-box;
   transition: 0.5s;
 }
 
 .all-page :is(p, li, h2, h3, h4, h5, h6, summary):not(#breadcrumbs, .gd-toc-wrap ul li, [class*='social-links'] ul li) a:hover {
-  /* --_p: 100%; */
-  text-decoration: underline;
+  --_p: 100%;
 }
 
 
@@ -244,36 +242,23 @@ li {
 
 
 
-/* Separator_____________Start*/
-
-
-/* site  button_____________Start*/
-
-
 /* Social Icons _____________Start*/
 .mg-social-links ul li a {
   border-radius: var(--rad-0);
   transition: var(--transition);
-  background: var(--white);
-  border: 1px solid var(--bg);
-}
-
-.mg-social-links ul li a:before {
-  border: 1px solid var(--white);
-  transition: var(--transition);
   background: var(--pc);
+  border: 1px solid var(--bg);
 }
 
 
 .mg-social-links ul li a svg {
-  position: relative;
-  fill: var(--black);
+  fill: var(--white);
   transition: var(--transition);
 }
 
 .mg-social-links ul li a:hover svg {
   transition: var(--transition);
-  fill: var(--white);
+  transform: scale(1.1);
 }
 
 
@@ -287,7 +272,11 @@ header {
   transition: var(--transition);
 }
 
-:is(header, footer) li a {
+header li a {
+  color: var(--black)
+}
+
+footer li a {
   color: rgba(0, 0, 0, 0.7);
 }
 
@@ -338,20 +327,26 @@ header nav ul {
 
 /* hr-Process Section________________Start */
 .tablinks {
-  box-shadow: var(--shadow);
+  background: var(--white);
+  border: 1px solid var(--pc);
+  border-radius: var(--rad-2);
 }
 
 .tab .tablinks.active {
-  background: var(--white);
+  background: var(--pc);
 }
 
 .tab .tablinks.active::before {
   transform: translateX(-50%);
-  background: var(--white);
+  background: var(--pc);
+}
+
+.hr-process .row-gap {
+  row-gap: 50px;
 }
 
 /* hr-tasks Section________________Start */
-.tablinks,
+
 .work-box,
 .hr-tasks .task-box {
   border: 1px solid var(--bd-color);
@@ -360,12 +355,20 @@ header nav ul {
 
 
 
-.tablinks span,
-.hr-tasks .task-box span {
+.tablinks span {
   font-size: var(--fs-2);
-  font-weight: var(--fw-1);
   color: var(--black);
 }
+
+.tablinks span,
+.hr-tasks .task-box span {
+  font-weight: var(--fw-1);
+}
+
+.hr-tasks .task-box span {
+  margin-bottom: 0 !important;
+}
+
 
 
 /* awards Section________________Start */
@@ -380,22 +383,20 @@ header nav ul {
   color: rgba(223, 223, 223, .8);
 }
 
-.why-choose-l .h4 {
+.why-choose-l .h2 {
   color: var(--white);
 }
 
 .why-choose-l .box:not(:first-child) {
-  border-left: 1px solid var(--bd-color);
+  border-left: 1px solid rgba(223, 223, 223, .2);
 }
 
 
 .why-choose-l .box span:first-child {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: var(--fw-2);
   color: var(--white);
 }
-
-
 
 .box.flex .h5 {
   color: var(--white);
@@ -575,6 +576,11 @@ table thead th {
   color: var(--black);
   font-size: 25px;
   font-weight: 700;
+}
+
+.mg-pros-wrap,
+.mg-cons-wrap {
+  border: 1px solid var(--bd-color);
 }
 
 .mg-pros-wrap .mg-pros-cons-head {

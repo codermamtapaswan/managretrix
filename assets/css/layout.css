@@ -246,11 +246,11 @@ p {
 }
 
 [class*="mg-con"]:not(:last-child) {
-  margin-bottom: 65px;
+  margin-bottom: 60px;
 }
 
 [class*="con-bg"] {
-  padding: 40px 0;
+  padding: 60px 0;
 }
 
 .row-gap {
@@ -380,7 +380,12 @@ hr {
 }
 
 .sec-title p {
-  color: var(--text);
+  color: rgb(75 68 68 / 90%);
+}
+
+.sec-w {
+  width: 70%;
+  margin: 0 auto;
 }
 
 
@@ -416,14 +421,23 @@ hr {
   gap: 20px;
 }
 
-.mg-btn-bg {
+.mg-btn-bg,
+.mg-btn-bd:hover {
   color: var(--white);
   background: var(--pc);
+  transition: all 0.3s ease-in-out;
 }
 
-.mg-btn-bd {
+.mg-btn-bd,
+.mg-btn-bg:hover {
   color: var(--pc);
   border: 1px solid var(--pc);
+  transition: all 0.3s ease-in-out;
+}
+
+.mg-btn-bg:hover {
+  background: var(--white);
+  transition: all 0.3s ease-in-out;
 }
 
 .mg-btn-txt {
@@ -457,24 +471,6 @@ hr {
   z-index: 1;
 }
 
-.mg-social-links ul li a:before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: -1px;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-
-.mg-social-links ul li a:hover:before {
-  top: 0;
-}
-
-.mg-social-links ul li a svg {
-  position: relative;
-  z-index: 3;
-}
 
 
 
@@ -483,7 +479,7 @@ hr {
   =================================================*/
 header {
   position: relative;
-  height: 60px;
+  height: 70px;
 }
 
 header,
@@ -532,7 +528,7 @@ header ul {
   background: var(--white);
   width: 100%;
   height: 100%;
-  transform: translateY(-65px);
+  transform: translateY(-100px);
   transition: var(--transition);
   box-shadow: var(--shadow);
   padding: 0 20px;
@@ -771,8 +767,8 @@ header ul {
 }
 
 .why-choose {
-  padding-top: 130px;
-  padding-bottom: 40px;
+  padding-top: 150px;
+  padding-bottom: 60px;
 }
 
 .why-choose-l .box:not(:first-child) {
@@ -799,9 +795,9 @@ header ul {
 
 /* how-we-work Section________________Start */
 .work-box .icon {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto;
+  width: 60px;
+  height: 60px;
+  margin: 20px auto;
   position: relative;
 }
 
@@ -824,6 +820,11 @@ header ul {
   width: 176px;
   height: 12px;
   z-index: -1;
+}
+
+.box-content .h5 {
+  display: inline-block;
+  margin-bottom: 5px !important;
 }
 
 /* testimonial-wrap___________________ */
@@ -1160,7 +1161,7 @@ table tr th {
 
 /* pros-cons */
 .mg-block-pros-cons {
-  align-items: unset;
+  align-items: unset !important;
 }
 
 .mg-block-pros-cons [class*='wrap'] {
@@ -1170,7 +1171,7 @@ table tr th {
 }
 
 .mg-pros-cons-head {
-  padding: 10px 40px;
+  padding: 10px 20px;
 }
 
 .mg-pros-cons-body {
@@ -1189,9 +1190,10 @@ table tr th {
 .mg-block-faq summary {
   display: flex;
   cursor: pointer;
-  font-weight: 600;
   position: relative;
   gap: 10px;
+  font-family: var(--heading-font);
+  font-size: var(--fs-2);
 }
 
 .mg-block-faq summary::after {
@@ -1410,7 +1412,7 @@ table tr th {
 /* # Footer
   =================================================*/
 footer .container {
-  padding-top: 20px;
+  padding-top: 60px;
   padding-bottom: 20px;
 }
 
@@ -1439,6 +1441,11 @@ footer .container .row-gap {
 .mail-content {
   display: flex;
   flex-direction: column;
+}
+
+footer .mg-social-links {
+  flex-direction: column;
+  align-items: unset;
 }
 
 
@@ -1579,6 +1586,13 @@ footer .container .row-gap {
   }
 }
 
+@media (min-width:1400px) {
+
+  .container {
+    max-width: 1320px
+  }
+}
+
 @media(max-width:768px) {
   [alt="hero-img"] {
     display: none;
@@ -1628,6 +1642,10 @@ footer .container .row-gap {
   [class*='col']:has(.blog-content) {
     order: 2;
   }
+
+  .why-choose .row-gap {
+    row-gap: 60px;
+  }
 }
 
 @media(max-width:600px) {
@@ -1636,6 +1654,12 @@ footer .container .row-gap {
   =================================================*/
   [class*="grid"] {
     grid-template-columns: auto;
+  }
+
+
+
+  .sec-w {
+    width: 100%;
   }
 
   [class*="mg-btn"] {
@@ -1685,8 +1709,31 @@ footer .container .row-gap {
     overflow-x: auto;
   }
 
+  .blog-header {
+    margin-bottom: 15px;
+  }
+
+  .sidebar-box .mg-social-links {
+    display: none;
+  }
+
+  .toc-header.h6 {
+    margin-bottom: 0 !important;
+  }
+
   /* # contact || Thank You || Search Not Found  || 404 Page 
   =================================================*/
+  .hr-process .row-gap {
+    row-gap: 30px !important;
+  }
+
+  [class*="mg-con"]:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
+  [class*="con-bg"] {
+    padding: 40px 0;
+  }
 
   .contact-form {
     box-shadow: unset;
@@ -1739,6 +1786,11 @@ footer .container .row-gap {
 
   footer :is(.mail, .mg-social-links) {
     order: 2;
+  }
+
+  footer .container {
+    padding-top: 40px;
+    padding-bottom: 20px;
   }
 
 
