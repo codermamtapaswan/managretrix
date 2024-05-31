@@ -327,9 +327,9 @@ hr {
   aspect-ratio: 16/9;
 }
 
-.mg-card-content>* {
+/* .mg-card-content>* {
   margin-bottom: 0 !important;
-}
+} */
 
 .mg-card-content {
   gap: 10px;
