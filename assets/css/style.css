@@ -239,6 +239,10 @@ li {
   text-decoration: underline;
 }
 
+.mg-card-content>p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 
 
 
