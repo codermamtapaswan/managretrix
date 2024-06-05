@@ -340,6 +340,10 @@ header nav ul {
   background: var(--pc);
 }
 
+.tab .tablinks.active span {
+  color: var(--white);
+}
+
 .tab .tablinks.active::before {
   transform: translateX(-50%);
   background: var(--pc);
