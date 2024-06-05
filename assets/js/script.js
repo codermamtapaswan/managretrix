@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function () {
     wrapper.addEventListener("mouseleave", autoPlay);
 
     // Create indicators
-    for (let i = 0; i < carouselChildrens.length / 2; i++) {
+    for (let i = 0; i < carouselChildrens.length; i++) {
         const indicator = document.createElement("div");
         indicator.classList.add("indicator");
         if (i === 0) {
