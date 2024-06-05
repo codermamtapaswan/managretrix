@@ -398,6 +398,8 @@ hr {
   width: fit-content;
   display: inline-block;
   transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  border: 1px solid var(--pc);
 }
 
 [class*="mg-btn"]:hover {
