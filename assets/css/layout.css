@@ -399,7 +399,7 @@ hr {
   display: inline-block;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  border: 1px solid var(--pc);
+
 }
 
 [class*="mg-btn"]:hover {
@@ -427,6 +427,7 @@ hr {
 .mg-btn-bd:hover {
   color: var(--white);
   background: var(--pc);
+  border: 1px solid var(--pc);
   transition: all 0.3s ease-in-out;
 }
 
