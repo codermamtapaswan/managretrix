@@ -732,6 +732,7 @@ header ul {
 
 /* hr-Process Section________________Start */
 .tablinks {
+  width: 100%;
   position: relative;
   align-items: center;
 }
@@ -783,10 +784,14 @@ header ul {
   padding-bottom: 60px;
 }
 
+.why-choose-l .box {
+  width: 100%;
+}
+
 .why-choose-l .box:not(:first-child) {
   content: '';
-  padding-left: 15px;
-  margin-left: 15px;
+  padding-left: 50px;
+  margin-left: 50px;
 
 }
 
@@ -1657,9 +1662,17 @@ footer .mg-social-links {
   .why-choose .row-gap {
     row-gap: 60px;
   }
+
+
 }
 
 @media(max-width:600px) {
+
+  .why-choose-l .box:not(:first-child) {
+    content: '';
+    padding-left: 25px;
+    margin-left: 25px;
+  }
 
   /* # General
   =================================================*/
