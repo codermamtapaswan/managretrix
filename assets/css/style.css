@@ -704,29 +704,38 @@ table thead th {
 /* # Contact Page Templates
   =================================================*/
 .contact-form {
-  box-shadow: var(--shadow-lg);
   border: 1px solid var(--bd-color);
   border-radius: var(--rad-2);
 }
 
-.float-box {
+.contact-details {
   background: #F2F4F4;
   border-radius: var(--rad-1);
 }
 
 .contact-form form {
-  background: var(--bg-1);
+  border: 1px solid var(--bd-color);
   border-radius: var(--rad-1);
 }
 
 .contact-form .input-group :is(input, textarea) {
-  border-radius: var(--rad-2);
+  border-bottom: 1px solid var(--bd-color);
+  padding-left: 0;
 }
 
-.contact-form .input-group label {
-  font-size: var(--fs-2);
-  font-weight: var(--fw-1);
+.contact-form .input-group ::placeholder {
+  font-size: var(--fs-3);
+  font-weight: var(--fw-2);
+}
+
+.contact-form input:focus::placeholder,
+.contact-form textarea:focus::placeholder {
   color: var(--black);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-bottom: 1px solid var(--black);
 }
 
 /* # Thank You || Search Not Found  || 404 Page

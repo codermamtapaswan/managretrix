@@ -1364,27 +1364,34 @@ table tr th {
 /* # Contact Page 
   =================================================*/
 .contact-form {
-  padding: 20px;
+  padding: 40px 20px;
 }
 
 .contact-details {
-  position: relative;
+  padding: 40px;
 }
 
-.float-box {
-  --w: 60px;
-  padding: 20px;
-  position: absolute;
-  left: calc(-1 * var(--w));
-  width: calc(100% + (var(--w)));
+.contact-details img {
+  margin-left: auto;
+  margin-bottom: 40px;
 }
 
-.mail span {
-  display: block
+.conact-heading {
+  text-align: center;
+}
+
+.conact-heading .h4 {
+  margin-bottom: 5px !important;
+}
+
+.mail strong {
+  display: block;
+  margin-bottom: 5px;
+
 }
 
 .contact-form form {
-  padding: 20px;
+  padding: 40px;
   row-gap: 20px;
 }
 
@@ -1679,7 +1686,6 @@ footer .mg-social-links {
   [class*="grid"] {
     grid-template-columns: auto;
   }
-
 
 
   .sec-w {
