@@ -19,18 +19,15 @@
 
     <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-500.woff2" as="font" type="font/woff2"
         crossorigin />
-    <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-500.ttf" as="font" type="font/ttf"
-        crossorigin />
+    <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-500.ttf" as="font" type="font/ttf" crossorigin />
 
     <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-600.woff2" as="font" type="font/woff2"
         crossorigin />
-    <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-600.ttf" as="font" type="font/ttf"
-        crossorigin />
+    <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-600.ttf" as="font" type="font/ttf" crossorigin />
 
     <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-700.woff2" as="font" type="font/woff2"
         crossorigin />
-    <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-700.ttf" as="font" type="font/ttf"
-        crossorigin />
+    <link rel="preload" href="assets/fonts/manrope/manrope-v15-latin-700.ttf" as="font" type="font/ttf" crossorigin />
 
     <link rel="stylesheet" href="assets/css/layout.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -104,43 +101,44 @@
                 <img src="assets/images/logo.svg" alt="managetrix-logo" class="img-fluid">
             </a>
 
-            <nav class="menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Why Managetrix</a></li>
-                    <li class="dropdown">
-                        <a href="#">Resourses</a>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Why Managetrix</a></li>
-                            <li class="dropdown">
-                                <a href="#">Resourses</a>
-                                <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Why Managetrix</a></li>
-                                </ul>
+            <div class="search-menu">
+                <nav class="menu">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Why Managetrix</a></li>
+                        <li class="dropdown">
+                            <a href="#">Resourses</a>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Why Managetrix</a></li>
+                                <li class="dropdown">
+                                    <a href="#">Resourses</a>
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Why Managetrix</a></li>
+                                    </ul>
 
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
 
-                    </li>
+                        </li>
 
-                    <svg class="cancel-btn" fill="#000" xmlns="http://www.w3.org/2000/svg" height="20" width="20"
-                        viewBox="0 0 384 512">
-                        <path
-                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
-                        </path>
+                        <svg class="cancel-btn" fill="#000" xmlns="http://www.w3.org/2000/svg" height="20" width="20"
+                            viewBox="0 0 384 512">
+                            <path
+                                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+                            </path>
+                        </svg>
+                    </ul>
+                </nav>
+
+                <div class="search-toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7.333 12.667A5.333 5.333 0 1 0 7.333 2a5.333 5.333 0 0 0 0 10.667ZM14 14l-2.9-2.9"
+                            stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
-                </ul>
-            </nav>
-
-            <div class="search-toggle-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M7.333 12.667A5.333 5.333 0 1 0 7.333 2a5.333 5.333 0 0 0 0 10.667ZM14 14l-2.9-2.9"
-                        stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
+                </div>
             </div>
-
             <form class="menu-search-form" action="#" method="get">
                 <input type="search" placeholder="What can we help you find today?" required="">
                 <button type="submit" class="search-btn">
@@ -181,13 +179,16 @@
                             <span class="h2">Oops!</span>
                             <span class="h2">Page Not Found</span>
                         </div>
-                        <p>The page you are looking for might have been removed, had its name changed or is temporarily unavailable.</p>
+                        <p>The page you are looking for might have been removed, had its name changed or is temporarily
+                            unavailable.</p>
                         <div class="flex-wrap">
                             <a href="#" class="mg-btn-bg">Back To Home</a>
                             <a href="#" class="mg-btn">
                                 Contact Us
-                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.625 9.25L5.375 5.5L1.625 1.75" stroke="#009A77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.625 9.25L5.375 5.5L1.625 1.75" stroke="#009A77" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
 
                             </a>
@@ -196,7 +197,7 @@
                     <div class="col-lg-5 col-md-5">
                         <img src="assets/images/404-img.svg" alt="404 Page Image" class="img-fluid">
                     </div>
-               </div>
+                </div>
             </div>
         </div>
 
