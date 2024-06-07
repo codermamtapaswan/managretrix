@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
     autoPlay();
     const updateActiveIndicator = () => {
         const scrollLeft = carousel.scrollLeft;
-        const index = Math.round(scrollLeft / firstCardWidth);
+        const index = Math.round(scrollLeft / (firstCardWidth + cardGap)) - cardPerView;
         const indicators = document.querySelectorAll(".indicator");
         indicators.forEach((indicator, i) => {
             if (i === index) {
@@ -350,18 +350,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    carousel.addEventListener("scroll", updateActiveIndicator);
-
 
     carousel.addEventListener("mousedown", dragStart);
     carousel.addEventListener("mousemove", dragging);
     document.addEventListener("mouseup", dragStop);
     carousel.addEventListener("scroll", infiniteScroll);
+    carousel.addEventListener("scroll", updateActiveIndicator);
     wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
     wrapper.addEventListener("mouseleave", autoPlay);
 
+
     // Create indicators
-    for (let i = 0; i < carouselChildrens.length; i++) {
+    for (let i = 0; i < carouselChildrens.length - 2 * cardPerView; i++) {
         const indicator = document.createElement("div");
         indicator.classList.add("indicator");
         if (i === 0) {
@@ -369,18 +369,22 @@ document.addEventListener("DOMContentLoaded", function () {
             activeIndicator = indicator;
         }
         indicator.addEventListener("click", () => {
-            carousel.scrollLeft = i * firstCardWidth;
+            carousel.scrollLeft = (i + cardPerView) * (firstCardWidth + cardGap);
             setActiveIndicator(indicator);
         });
         indicatorsContainer.appendChild(indicator);
     }
 
+
     // Function to set active indicator
     const setActiveIndicator = (indicator) => {
-        activeIndicator.classList.remove("active");
+        if (activeIndicator) {
+            activeIndicator.classList.remove("active");
+        }
         indicator.classList.add("active");
         activeIndicator = indicator;
     }
+
 
 
 

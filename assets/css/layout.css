@@ -512,6 +512,11 @@ header ul {
   gap: 30px;
 }
 
+.search-menu {
+  display: flex;
+  gap: 25px;
+}
+
 :is(header, footer) ul li a {
   text-transform: capitalize;
 }
