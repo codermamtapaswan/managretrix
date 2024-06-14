@@ -328,6 +328,10 @@ header nav ul {
 
 /* # Home page
   =================================================*/
+/* hr-timeline section____________start */
+.hr-timeline {
+  margin-bottom: 0 !important;
+}
 
 /* hr-Process Section________________Start */
 .tablinks {
@@ -386,11 +390,14 @@ header nav ul {
   border-radius: var(--rad-2);
 }
 
+.hr-timeline,
 .why-choose {
   background: var(--bg-3);
   color: rgba(223, 223, 223, .8);
 }
 
+.hr-timeline .h2,
+.hr-timeline p,
 .why-choose-l .h2 {
   color: var(--white);
 }
