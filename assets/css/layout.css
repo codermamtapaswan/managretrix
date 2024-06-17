@@ -726,13 +726,6 @@ header ul {
 
 /* Clients Section________________Start */
 
-/* .clients figure {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-} */
-
 .clients figure img {
   padding: 0 20px;
   max-width: 90%;
@@ -791,7 +784,16 @@ header ul {
 }
 
 /* awards Section________________Start */
-.awards .sec-title {
+.awards {
+  padding-bottom: 0 !important;
+}
+
+.task-m-img {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.award-list .sec-title {
   padding: 20px;
   margin-bottom: -95px !important;
   position: relative;
@@ -960,7 +962,7 @@ header ul {
 }
 
 /* blog Page_______________________ */
-
+.mg-con-manage-task .sec-title,
 .blog .sec-title {
   text-align: left;
 }
