@@ -739,6 +739,10 @@ header ul {
   opacity: 1;
 }
 
+.search-toggle-btn {
+  display: flex;
+  align-items: center;
+}
 
 
 /* hr-Process Section________________Start */
