@@ -328,6 +328,20 @@ header nav ul {
 
 /* # Home page
   =================================================*/
+.hero {
+  margin-bottom: 90px !important;
+}
+
+.hero-img-cont {
+  position: relative;
+}
+
+.dasboard {
+  position: absolute;
+  right: 150px;
+  bottom: -130px;
+}
+
 /* hr-timeline section____________start */
 .hr-timeline {
   margin-bottom: 0 !important;

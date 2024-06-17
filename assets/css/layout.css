@@ -744,6 +744,7 @@ header ul {
 /* hr-Process Section________________Start */
 .tablinks {
   width: 100%;
+  height: 100%;
   position: relative;
   align-items: center;
 }
@@ -1637,8 +1638,9 @@ footer .mg-social-links {
 }
 
 @media(max-width:768px) {
-  [alt="hero-img"] {
-    display: none;
+  .dasboard {
+    left: 30px !important;
+    bottom: -100px !important;
   }
 
   .scroll-cont {
@@ -1702,6 +1704,11 @@ footer .mg-social-links {
 }
 
 @media(max-width:600px) {
+  .dasboard {
+    width: 300px;
+    left: 0px !important;
+    bottom: -100px !important;
+  }
 
   .why-choose-l .box:not(:first-child) {
     content: '';
