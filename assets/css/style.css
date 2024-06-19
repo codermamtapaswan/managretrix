@@ -349,7 +349,7 @@ header nav ul {
 
 .timline-img {
   background: var(--white);
-  padding-top: 40px;
+  padding: 40px 40px 0 40px;
   border-radius: var(--rad-2);
   text-align: center;
 }
